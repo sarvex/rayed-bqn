@@ -20,7 +20,7 @@ image ⇐ {
 
 window ⇐ {
   ⟨_init ⋄ Close
-   SetIcon ⋄ SetBackground ⋄ SetToResizable⟩⇐
+   SetIcon ⋄ SetBackground , Setting⟩⇐
 
   Init ← {posX‿posY 𝕊 title: 
     "𝕩 can only be ints"!∧´⌈⊸=𝕩
@@ -44,8 +44,7 @@ window ⇐ {
    ;𝕨𝕊"resize":
       "𝕩 has to be 0 or 1"!1<⊸≡𝕨∊↕2
       rayFFI.SetWindowState𝕩×4
-    𝕊"resize":
-    isWindowState 
+   ;𝕊"resize": rayFFI.IsWindowState 4 
   }
 }
 

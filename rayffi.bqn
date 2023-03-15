@@ -1,8 +1,9 @@
+raylibPath←"putRaylibHere/libraylib."∾"dll"‿"so"⊑˜(("/cygwin/"≡8⊸↑)<'/'=⊑)•path 
 
 # making FFI nicer to use
 _R ← {𝕨 funcName _𝕣 inpTypes: outType←𝕨⊣⟨⟩
   a←(⋈'>'⊸∾)⍟((0≠≠)∧1=≡)⟨⟩⍟(@⊸≡)𝕩
-  "raylib.dll"•FFI⟨outType⋄𝕗⟩∾a
+  raylibPath•FFI⟨outType⋄𝕗⟩∾a
 }
 Struct ←{'{'∾'}'«∾','∾¨𝕩}
 i←"i32"⋄f←"f32"⋄color←"{u8,u8,u8,u8}"⋄str←"&i32:c8"⋄u←"u32"
@@ -88,7 +89,7 @@ getFPS       ⇐     i "GetFPS"       _R@        # Get current FPS
 getFrameTime ⇐     f "GetFrameTime" _R@        # Get time in seconds for last frame drawn (delta time)
 getTime      ⇐ "f64" "GetTime"      _R@        # Get elapsed time in seconds since InitWindow()
 
-setWindowIcon ⇐ "SetWindowIcon"_R image
+setWindowIcon ⇐ "SetWindowIcon"_R •Show image
 
 # Input-related functions: keyboard
 isKeyPressed   ⇐ "i32" "IsKeyPressed"  _R i # Check if a key has been pressed once
